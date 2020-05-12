@@ -1,7 +1,7 @@
 # @author Mike Bland (michael.bland@gsa.gov)
 
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
-
 require "coveralls"
-Coveralls.wear!
+require "simplecov"
+
+SimpleCov.formatter = Coveralls::SimpleCov::Formatter
+SimpleCov.start
