@@ -37,3 +37,8 @@ jekyll_pages_api_search:
     url:
       boost: 5
     body:
+
+sass:
+  load_paths:
+    - _sass
+    - ../../lib/jekyll_pages_api_search/sass

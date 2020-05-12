@@ -6,16 +6,12 @@ require_relative '../lib/jekyll_pages_api_search'
 
 require 'digest'
 require 'fileutils'
+require 'jekyll'
 require 'jekyll_pages_api/generator'
 require 'minitest/autorun'
 require 'tmpdir'
 
 module JekyllPagesApiSearch
-  class DummySite
-    def each_site_file
-    end
-  end
-
   class StandaloneTest < ::Minitest::Test
     attr_reader :basedir, :config, :pages_json_rel_path
     attr_reader :generated_pages_json, :search_bundle_path, :search_index_path
@@ -27,7 +23,8 @@ module JekyllPagesApiSearch
       @config = File.join SiteBuilder::SOURCE_DIR, '_config.yml'
 
       # Just need this to grab the canonical JekyllPagesApi output path.
-      generator = ::JekyllPagesApi::Generator.new DummySite.new
+      site = Jekyll::Site.new Jekyll::Configuration::DEFAULTS
+      generator = ::JekyllPagesApi::Generator.new site
       page = generator.page
       @pages_json_rel_path = page.path
       @generated_pages_json = File.join @basedir, @pages_json_rel_path

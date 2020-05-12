@@ -25,5 +25,15 @@ module JekyllPagesApiSearch
       page.output = File.read(pages_json_path)
       self.pages << page
     end
+
+    def in_theme_dir(*paths)
+      return nil
+    end
+
+    def in_source_dir(*paths)
+      paths.reduce(self.source) do |base, path|
+        Jekyll.sanitized_path(base, path)
+      end
+    end
   end
 end

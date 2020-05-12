@@ -73,7 +73,8 @@ module JekyllPagesApiSearch
     end
 
     def get_tag(name)
-      Liquid::Template.tags[name].parse(nil, nil, nil, {})
+      tokenizer = Liquid::Tokenizer::new nil
+      Liquid::Template.tags[name].parse(nil, nil, nil, tokenizer)
     end
 
     def test_interface_style_present

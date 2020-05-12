@@ -8,11 +8,21 @@ require 'minitest/autorun'
 require 'tmpdir'
 
 module JekyllPagesApiSearch
+  class DummyFrontmatterDefaults
+    def all(path, type)
+      {}
+    end
+  end
+
   class DummySite
     attr_accessor :static_files
 
     def initialize
       @static_files = []
+    end
+
+    def frontmatter_defaults
+      @frontmatter_defaults = DummyFrontmatterDefaults.new
     end
   end
 
@@ -50,7 +60,7 @@ module JekyllPagesApiSearch
       expected = ['search-bundle.js', 'search-bundle.js.gz'].map do |f|
         File.join(assets_dir, f)
       end
-      assert_equal(expected, Dir[File.join assets_dir, '*'])
+      assert_equal(expected, Dir[File.join assets_dir, '*'].sort)
     end
   end
 end

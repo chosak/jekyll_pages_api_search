@@ -41,7 +41,7 @@ module JekyllPagesApiSearch
       js_pattern = File.join(SOURCE, JAVASCRIPT_DIR, 'search-bundle.js*')
       img_pattern = File.join(SOURCE, 'assets', '{png,svg}', '*')
       all_paths = Dir.glob(js_pattern) + Dir.glob(img_pattern)
-      all_paths.map { |path| path[BEGIN_PATH..-1] }
+      all_paths.sort.map { |path| path[BEGIN_PATH..-1] }
     end
   end
 end
