@@ -41,6 +41,5 @@ node_modules
 package-lock.json
 
 # Build artifacts
-lib/jekyll_pages_api_search/lunr.min.js
 assets/js/search-bundle.js*
 **/.jekyll-cache/
